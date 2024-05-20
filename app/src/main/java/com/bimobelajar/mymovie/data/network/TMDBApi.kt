@@ -1,0 +1,24 @@
+package com.bimobelajar.mymovie.data.network
+
+import com.bimobelajar.mymovie.data.model.Movie
+import com.bimobelajar.mymovie.data.model.MovieResponse
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+interface TMDBApi {
+    @GET("movie/now_playing")
+    suspend fun getNowPlayingMovies(
+        @Query("api_key") apiKey: String = "YOUR_API_KEY",
+        @Query("language") language: String = "en-US",
+        @Query("page") page: Int = 1
+    ): Response<MovieResponse>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = "YOUR_API_KEY",
+        @Query("language") language: String = "en-US"
+    ): Response<Movie>
+}
