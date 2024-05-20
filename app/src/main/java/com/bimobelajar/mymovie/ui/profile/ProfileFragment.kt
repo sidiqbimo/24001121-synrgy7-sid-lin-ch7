@@ -58,7 +58,7 @@ class ProfileFragment : Fragment() {
             val birthdate = birthdateInput.text.toString()
             val address = addressInput.text.toString()
             profileViewModel.saveChanges(username, fullName, birthdate, address)
-            Toast.makeText(context, "Changes saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Berhasil mengubah data!", Toast.LENGTH_SHORT).show()
         }
 
         logoutButton.setOnClickListener {

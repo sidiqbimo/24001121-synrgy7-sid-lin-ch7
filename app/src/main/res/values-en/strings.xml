@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">myMovie</string>
+    <string name="nowPlaying">Playing Now</string>
+    <string name="details">Details</string>
+    <string name="accountTab">My Account</string>
+    <string name="accountdesc">These are your account information. If you want to change it, edit the field below, then, tap on \"Simpan Perubahan\"</string>
+    <string name="languageCheck">English is now automatically applied in this app.</string>
+</resources>

@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">myMovie</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name" translatable="false">myMovie</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+    <string name="nowPlaying">Tayang Sekarang</string>
+    <string name="details">Detail Film</string>
+    <string name="accountTab">Akun Saya</string>
+    <string name="accountdesc">Berikut ini adalah informasi Akun Anda. Apabila ingin melakukan perubahan, silakan sunting informasi di bawah lalu tekan \"Simpan Perubahan\"</string>
+    <string name="languageCheck">Bahasa Indonesia otomatis diterapkan untuk aplikasi ini</string>
 </resources>

@@ -8,36 +8,37 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bimobelajar.mymovie.R
 import com.bimobelajar.mymovie.data.model.Movie
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 
-class MovieAdapter(private val movies: List<Movie>, private val clickListener: (Movie) -> Unit) :
-    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
-
-    inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val moviePoster: ImageView = itemView.findViewById(R.id.moviePoster)
-        private val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
-        private val movieReleaseDate: TextView = itemView.findViewById(R.id.movieReleaseDate)
-
-        fun bind(movie: Movie) {
-            movieTitle.text = movie.title
-            movieReleaseDate.text = movie.release_date
-            Glide.with(itemView.context)
-                .load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
-                .into(moviePoster)
-
-            itemView.setOnClickListener { clickListener(movie) }
-        }
-    }
+class MovieAdapter(
+    private val movies: List<Movie>,
+    private val onItemClicked: (Movie) -> Unit
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_movie, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
         return MovieViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(movies[position])
+        holder.bind(movies[position], onItemClicked)
     }
 
     override fun getItemCount(): Int = movies.size
+
+    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val moviePoster: ImageView = itemView.findViewById(R.id.moviePoster)
+        private val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
+        private val movieReleaseDate: TextView = itemView.findViewById(R.id.movieReleaseDate)
+
+        fun bind(movie: Movie, onItemClicked: (Movie) -> Unit) {
+            movieTitle.text = movie.title
+            movieReleaseDate.text = movie.release_date
+            Picasso.get().load("https://image.tmdb.org/t/p/w500${movie.poster_path}").into(moviePoster)
+
+            itemView.setOnClickListener {
+                onItemClicked(movie)
+            }
+        }
+    }
 }

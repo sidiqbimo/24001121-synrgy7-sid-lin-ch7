@@ -39,12 +39,12 @@ class RegisterFragment : Fragment() {
             val confirmPassword = confirmPasswordInput.text.toString()
 
             if (password != confirmPassword) {
-                Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Kata sandi tidak cocok", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             authViewModel.register(email, password, {
-                Toast.makeText(context, "Registration successful", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }, { error ->
                 Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
