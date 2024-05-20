@@ -1,18 +1,16 @@
 package com.bimobelajar.mymovie.ui.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bimobelajar.mymovie.R
-
 
 class ProfileFragment : Fragment() {
 
@@ -38,21 +36,21 @@ class ProfileFragment : Fragment() {
         saveChangesButton = view.findViewById(R.id.saveChangesButton)
         logoutButton = view.findViewById(R.id.logoutButton)
 
-        profileViewModel.username.observe(viewLifecycleOwner, { username ->
+        profileViewModel.userName.observe(viewLifecycleOwner) { username ->
             usernameInput.setText(username)
-        })
+        }
 
-        profileViewModel.fullName.observe(viewLifecycleOwner, { fullName ->
+        profileViewModel.fullName.observe(viewLifecycleOwner) { fullName ->
             fullNameInput.setText(fullName)
-        })
+        }
 
-        profileViewModel.birthdate.observe(viewLifecycleOwner, { birthdate ->
+        profileViewModel.birthdate.observe(viewLifecycleOwner) { birthdate ->
             birthdateInput.setText(birthdate)
-        })
+        }
 
-        profileViewModel.address.observe(viewLifecycleOwner, { address ->
+        profileViewModel.address.observe(viewLifecycleOwner) { address ->
             addressInput.setText(address)
-        })
+        }
 
         saveChangesButton.setOnClickListener {
             val username = usernameInput.text.toString()
@@ -64,7 +62,6 @@ class ProfileFragment : Fragment() {
         }
 
         logoutButton.setOnClickListener {
-//            ke hlmn Login
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         }
 

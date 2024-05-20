@@ -3,26 +3,30 @@ package com.bimobelajar.mymovie.ui.auth
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.bimobelajar.mymovie.data.DataStoreManager
+import com.bimobelajar.mymovie.MyApplication
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
-    private val dataStore = DataStoreManager(application)
 
-    fun login(email: String, password: String, callback: (Boolean) -> Unit) {
-        viewModelScope.launch {
-            val storedEmail = dataStore.getEmail()
-            val storedPassword = dataStore.getPassword()
-            callback(email == storedEmail && password == storedPassword)
-        }
+    private val dataStoreManager = MyApplication.dataStoreManager
+
+    suspend fun login(email: String, password: String): Boolean {
+        val storedEmail = dataStoreManager.email.first()
+        val storedPassword = dataStoreManager.password.first()
+        return email == storedEmail && password == storedPassword
     }
 
-    fun register(username: String, email: String, password: String, callback: (Boolean) -> Unit) {
+    fun register(email: String, password: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
-            dataStore.saveUsername(username)
-            dataStore.saveEmail(email)
-            dataStore.savePassword(password)
-            callback(true)
+            val storedEmail = dataStoreManager.email.first()
+            if (storedEmail != null) {
+                onError("User already registered")
+            } else {
+                dataStoreManager.saveEmail(email)
+                dataStoreManager.savePassword(password)
+                onSuccess()
+            }
         }
     }
 }

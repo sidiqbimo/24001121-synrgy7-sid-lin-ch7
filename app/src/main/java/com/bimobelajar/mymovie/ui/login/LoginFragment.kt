@@ -1,18 +1,20 @@
 package com.bimobelajar.mymovie.ui.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bimobelajar.mymovie.R
 import com.bimobelajar.mymovie.ui.auth.AuthViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -37,13 +39,12 @@ class LoginFragment : Fragment() {
         loginButton.setOnClickListener {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
-
-            authViewModel.login(email, password) { success ->
+            CoroutineScope(Dispatchers.Main).launch {
+                val success = authViewModel.login(email, password)
                 if (success) {
-                    // Navigate to Home
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 } else {
-                    Toast.makeText(context, "Invalid credentials", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Invalid email or password", Toast.LENGTH_SHORT).show()
                 }
             }
         }
