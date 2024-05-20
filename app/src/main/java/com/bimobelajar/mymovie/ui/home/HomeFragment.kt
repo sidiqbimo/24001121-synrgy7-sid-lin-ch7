@@ -1,19 +1,16 @@
 package com.bimobelajar.mymovie.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bimobelajar.mymovie.R
-import com.bimobelajar.mymovie.ui.adapter.MovieAdapter
-
 
 class HomeFragment : Fragment() {
 
@@ -31,12 +28,12 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         accountImage = view.findViewById(R.id.accountImage)
 
-        homeViewModel.movies.observe(viewLifecycleOwner) { movies ->
-            recyclerView.adapter = MovieAdapter(movies) { movie ->
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie.id)
-                findNavController().navigate(action)
-            }
-        }
+//        homeViewModel.movies.observe(viewLifecycleOwner) { movies ->
+//            recyclerView.adapter = MovieAdapter(movies) { movie ->
+//                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie.id)
+//                findNavController().navigate(action)
+//            }
+//        }
 
         accountImage.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
