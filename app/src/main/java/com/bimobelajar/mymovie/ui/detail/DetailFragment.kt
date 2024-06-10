@@ -25,7 +25,8 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detail, container, false)
-        detailViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(DetailViewModel::class.java)
+        detailViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(
+            DetailViewModel::class.java)
 
         moviePoster = view.findViewById(R.id.moviePoster)
         movieTitle = view.findViewById(R.id.movieTitle)

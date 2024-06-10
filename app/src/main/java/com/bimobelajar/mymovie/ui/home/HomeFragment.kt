@@ -26,15 +26,21 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        homeViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(
+            HomeViewModel::class.java)
 
         recyclerView = view.findViewById(R.id.recyclerView)
         accountImage = view.findViewById(R.id.accountImage)
 
         homeViewModel.movies.observe(viewLifecycleOwner) { movies ->
             recyclerView.adapter = MovieAdapter(movies) { movie ->
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie.id)
-                findNavController().navigate(action)
+                val movieId = movie.id.toIntOrNull() // Convert to integer if possible
+                if (movieId != null) {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movieId)
+                    findNavController().navigate(action)
+                } else {
+                    // Handle the case where movie.id is not a valid integer
+                }
             }
         }
 

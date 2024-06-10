@@ -29,7 +29,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
-        authViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(AuthViewModel::class.java)
+        authViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(
+            AuthViewModel::class.java)
 
         emailInput = view.findViewById(R.id.emailInput)
         passwordInput = view.findViewById(R.id.passwordInput)

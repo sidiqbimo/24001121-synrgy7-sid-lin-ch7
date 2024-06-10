@@ -23,7 +23,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.bimobelajar.mymovie.R
-import com.bimobelajar.mymovie.worker.BlurWorker
+import com.bimobelajar.data.worker.BlurWorker
 import java.io.File
 import java.io.FileOutputStream
 
@@ -44,7 +44,8 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        profileViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(ProfileViewModel::class.java)
+        profileViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(
+            ProfileViewModel::class.java)
 
         usernameInput = view.findViewById(R.id.usernameInput)
         fullNameInput = view.findViewById(R.id.fullNameInput)

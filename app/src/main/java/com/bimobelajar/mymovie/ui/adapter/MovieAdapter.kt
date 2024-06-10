@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bimobelajar.mymovie.R
-import com.bimobelajar.mymovie.data.model.Movie
+import com.bimobelajar.core.data.model.Movie
 import com.squareup.picasso.Picasso
 
 class MovieAdapter(

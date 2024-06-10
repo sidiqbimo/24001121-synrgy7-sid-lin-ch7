@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.bimobelajar.mymovie.data.model.Movie
-import com.bimobelajar.mymovie.data.network.RetrofitService
+import com.bimobelajar.core.data.model.Movie
+import com.bimobelajar.core.data.network.RetrofitService
 import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
