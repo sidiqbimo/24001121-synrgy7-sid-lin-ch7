@@ -1,8 +1,7 @@
 package com.bimobelajar.mymovie.worker
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.*
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import java.io.File
@@ -18,8 +17,10 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
         if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
             val blurredBitmap = blurBitmap(bitmap)
+            val circularBitmap = getCircularBitmap(blurredBitmap)
+            val resizedBitmap = resizeBitmap(circularBitmap, 55, 55)
             FileOutputStream(File(imagePath)).use { out ->
-                blurredBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+                resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out) //jadiin PNG biar bisa transparrent or gak ada black square
             }
             return Result.success()
         }
@@ -42,5 +43,42 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
         tmpOut.copyTo(outputBitmap)
 
         return Bitmap.createScaledBitmap(outputBitmap, bitmap.width, bitmap.height, false)
+    }
+
+    private fun getCircularBitmap(bitmap: Bitmap): Bitmap {
+        val size = Math.min(bitmap.width, bitmap.height)
+        val output = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(output)
+
+        val paint = Paint()
+        paint.isAntiAlias = true
+
+        val rect = Rect(0, 0, size, size)
+        val rectF = RectF(rect)
+
+        canvas.drawARGB(0, 0, 0, 0)
+
+        val path = Path()
+        path.addOval(rectF, Path.Direction.CCW)
+        canvas.clipPath(path)
+        canvas.drawBitmap(bitmap, rect, rect, paint)
+
+        val borderSize = 4
+        val strokeColor = Color.parseColor("#A91D3A")
+        paint.color = strokeColor
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = borderSize.toFloat()
+        canvas.drawOval(rectF, paint)
+
+
+
+        return output
+    }
+
+    private fun resizeBitmap(bitmap: Bitmap, widthDp: Int, heightDp: Int): Bitmap {
+        val scale = applicationContext.resources.displayMetrics.density
+        val widthPx = (widthDp * scale + 0.5f).toInt()
+        val heightPx = (heightDp * scale + 0.5f).toInt()
+        return Bitmap.createScaledBitmap(bitmap, widthPx, heightPx, false)
     }
 }
