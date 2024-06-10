@@ -1,5 +1,7 @@
 package com.bimobelajar.mymovie.ui.home
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,5 +45,15 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val sharedPreferences = activity?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        val profileImagePath = sharedPreferences?.getString("profile_image_path", null)
+        if (profileImagePath != null) {
+            val bitmap = BitmapFactory.decodeFile(profileImagePath)
+            accountImage.setImageBitmap(bitmap)
+        }
     }
 }

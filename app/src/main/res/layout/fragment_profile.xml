@@ -138,4 +138,18 @@
 
         app:layout_constraintTop_toBottomOf="@id/topFrame"/>
 
+    <ImageView
+        android:id="@+id/accountImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/personred"
+        app:layout_constraintTop_toBottomOf="@id/logoutButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="40dp"
+
+        android:layout_marginRight="16dp"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
