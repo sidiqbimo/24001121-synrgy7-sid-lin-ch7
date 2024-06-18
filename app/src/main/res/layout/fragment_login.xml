@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.login.LoginFragment"
-    android:background="@color/pale">
+    tools:context=".ui.login.LoginFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -31,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Masuk Sekarang"
+                android:text="@string/loginButton"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -45,25 +44,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/loginDesc" />
+                app:layout_constraintTop_toBottomOf="@id/loginDesc"
+                android:autofillHints="emailAddress" />
 
             <EditText
                 android:id="@+id/passwordInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Kata Sandi"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailInput" />
+                app:layout_constraintTop_toBottomOf="@id/emailInput"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/loginButton"
@@ -71,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Login"
+                android:text="@string/loginButton"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/separator"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -94,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Daftar"
+                android:text="@string/regButton"
                 android:textColor="@color/white"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -105,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Belum memiliki akun? Buat sekarang!"
+                android:text="@string/notHaveAcc"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/registerButton"
                 app:layout_constraintLeft_toLeftOf="parent"

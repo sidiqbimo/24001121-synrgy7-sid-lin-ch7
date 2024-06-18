@@ -4,7 +4,7 @@
     </style>
 
 
-    <style name="MyEditText" parent="@android:style/Widget.EditText">
+    <style name="MyEditText" parent="@android:style/Widget.EditText" tools:keep="@style/MyEditText">
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
     </style>

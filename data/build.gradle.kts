@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 android {
@@ -24,13 +26,13 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("androidx.room:room-runtime:2.3.0")
+    implementation(libs.kotlinStdlib)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.androidx.room.runtime)
 
-    implementation("androidx.work:work-runtime-ktx:2.7.0")
+    implementation(libs.work.runtime.ktx)
 
-    kapt("androidx.room:room-compiler:2.3.0")
+    kapt(libs.androidx.room.compiler)
 }
