@@ -23,6 +23,6 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation(libs.kotlinStdlib)
     implementation(libs.androidx.core.ktx)
 }

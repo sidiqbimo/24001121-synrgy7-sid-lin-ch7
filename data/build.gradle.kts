@@ -34,5 +34,5 @@ dependencies {
 
     implementation(libs.work.runtime.ktx)
 
-    kapt(libs.androidx.room.compiler)
+    implementation(libs.kotlinStdlib)
 }
