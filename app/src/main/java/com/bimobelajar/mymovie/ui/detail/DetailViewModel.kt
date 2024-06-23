@@ -13,7 +13,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     private val _movie = MutableLiveData<Movie>()
     val movie: LiveData<Movie> = _movie
 
-    private val retrofitService = RetrofitService.getInstance()
+    private val retrofitService = RetrofitService.getInstance(application)
 
     fun fetchMovieDetails(movieId: Int) {
         viewModelScope.launch {

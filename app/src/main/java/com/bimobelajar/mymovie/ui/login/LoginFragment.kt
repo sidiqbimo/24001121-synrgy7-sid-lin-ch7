@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     Toast.makeText(context, context?.getString(R.string.languageCheck), Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "E-mail atau sandi salah!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Wrong mail/password", Toast.LENGTH_LONG).show()
                 }
             }
         }

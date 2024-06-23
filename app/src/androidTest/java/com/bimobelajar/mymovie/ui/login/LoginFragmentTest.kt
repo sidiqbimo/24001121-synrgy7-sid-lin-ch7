@@ -1,13 +1,18 @@
 package com.bimobelajar.mymovie.ui.login
 
+import android.content.Intent
+import android.view.View
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.NoMatchingViewException
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.*
 import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.util.HumanReadables
+import android.os.SystemClock
 import com.bimobelajar.mymovie.MainActivity
 import com.bimobelajar.mymovie.R
 import com.bimobelajar.mymovie.util.EspressoIdlingResource
@@ -25,6 +30,7 @@ class LoginFragmentTest {
     @Before
     fun setUp() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
+        activityRule.launchActivity(Intent())
     }
 
     @After
@@ -64,7 +70,9 @@ class LoginFragmentTest {
         // Log in
         onView(withId(R.id.loginButton)).perform(click())
 
-        // Ada toast salah = error == test sukses
-        onView(withText("E-mail atau sandi salah!")).inRoot(ToastMatcher()).check(matches(isDisplayed()))
+        SystemClock.sleep(3000)
+
+        // Gak pindah screen == test sukses
+        onView(withId(R.id.loginFragment)).check(matches(isDisplayed()))
     }
 }

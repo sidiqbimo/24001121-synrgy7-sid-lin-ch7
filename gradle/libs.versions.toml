@@ -55,7 +55,8 @@ hamcrestVer = "2.2"
 espressoIdlingResource = "3.5.1"
 hamcrestAllVer = "1.3"
 hamcrestLibraryVer = "2.2"
-
+chuckerVersion = "3.5.2"
+chuckerNoOpVersion = "3.5.2"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
@@ -112,6 +113,8 @@ hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrestVer" }
 androidx-espresso-idling-resource = { group = "androidx.test.espresso", name = "espresso-idling-resource", version.ref = "espressoIdlingResource" }
 hamcrestAll = { module = "org.hamcrest:hamcrest-all", version.ref = "hamcrestAllVer" }
 hamacrestLibrary = { module = "org.hamcrest:hamcrest-library", version.ref = "hamcrestLibraryVer" }
+chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chuckerVersion" }
+chuclerNoOp = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chuckerNoOpVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

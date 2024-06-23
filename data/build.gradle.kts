@@ -32,6 +32,10 @@ dependencies {
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.androidx.room.runtime)
 
+
+    implementation(libs.chucker)
+
+
     implementation(libs.work.runtime.ktx)
 
     implementation(libs.kotlinStdlib)

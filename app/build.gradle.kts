@@ -31,6 +31,19 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    flavorDimensions += "version"
+    productFlavors {
+        create("free") {
+            dimension = "version"
+            applicationIdSuffix = ".free"
+            versionNameSuffix = "-free"
+        }
+        create("premium") {
+            dimension = "version"
+            applicationIdSuffix = ".prem"
+            versionNameSuffix = "-prem"
+        }
+    }
 }
 
 dependencies {
@@ -65,6 +78,9 @@ dependencies {
     implementation(libs.espressoContrib)
     implementation(libs.androidx.espresso.core)
     implementation(libs.hamacrestLibrary)
+
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chuclerNoOp)
 
     testImplementation(libs.junit)
     testImplementation(libs.androidx.core)
